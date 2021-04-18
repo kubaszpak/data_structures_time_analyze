@@ -24,6 +24,11 @@ DynamicArray::~DynamicArray()
     delete[] array;
 }
 
+size_t DynamicArray::get_size() const
+{
+    return size;
+}
+
 void DynamicArray::resize(const int growth_factor /* GROWTH_FACTOR */)
 {
 
@@ -56,11 +61,24 @@ void DynamicArray::search(const int value) const
     }
 }
 
+void DynamicArray::delete_at(const int index)
+{
+    if (index < 0 || index >= size)
+    {
+        std::cout << "No element at position " << index << std::endl;
+        return;
+    }
+    size--;
+    for (int i = index; i < size; i++)
+    {
+        array[i] = array[i + 1];
+    }
+}
+
 void DynamicArray::append(const int value)
 {
-    // if (size >= current_max_capacity)
+    // if (size == current_max_capacity)
     // {
-    //     // size should always equal the current_max_capacity in this case
     //     assert(size == current_max_capacity);
     //     this->resize();
     // }
@@ -99,6 +117,9 @@ void DynamicArray::insert(const int index, const int value)
     {
         this->resize();
     }
+
+    // ? should DynamicArray move each element 1 space when inserting a new element in the middle or should it just update it
+
     for (int i = size; i > index; i--)
     {
         array[i] = array[i - 1];
