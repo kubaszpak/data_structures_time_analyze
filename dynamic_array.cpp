@@ -1,6 +1,4 @@
 #include "dynamic_array.h"
-#include <cassert>
-#include <iostream>
 
 // DynamicArray::DynamicArray()
 // {
@@ -41,16 +39,39 @@ void DynamicArray::resize(const int growth_factor /* GROWTH_FACTOR */)
     array = new_array;
 }
 
+void DynamicArray::search(const int value) const
+{
+    bool found = false;
+    for (int i = 0; i < size; i++)
+    {
+        if (array[i] == value)
+        {
+            std::cout << "Value " << value << " is located at index " << i << std::endl;
+            found = true;
+        }
+    }
+    if (!found)
+    {
+        std::cout << "Array does not contain " << value << std::endl;
+    }
+}
+
 void DynamicArray::append(const int value)
 {
-    if (size >= current_max_capacity)
-    {
-        // size should always equal the current_max_capacity in this case
-        assert(size == current_max_capacity);
-        this->resize();
-    }
-    array[size] = value;
-    size++;
+    // if (size >= current_max_capacity)
+    // {
+    //     // size should always equal the current_max_capacity in this case
+    //     assert(size == current_max_capacity);
+    //     this->resize();
+    // }
+    // array[size] = value;
+    // size++;
+    this->insert(size, value);
+}
+
+void DynamicArray::insert_at_start(const int value)
+{
+    this->insert(0, value);
 }
 
 void DynamicArray::display() const
@@ -69,47 +90,61 @@ void DynamicArray::display() const
 
 void DynamicArray::insert(const int index, const int value)
 {
-    if (index < 0)
+    if (index < 0 || index > size)
     {
         std::cout << "Cannot insert an element at index " << index << std::endl;
         return;
     }
-    if (index < size)
+    else if (size == current_max_capacity)
     {
-        array[index] = value;
+        this->resize();
     }
-    else
+    for (int i = size; i > index; i--)
     {
-        // index >= size
-        // easier way but thought that spliting this case into > max_capacity and < max_capacity
-        // would be more efficient
-
-        // for (size_t i = size; i < index; i++)
-        // {
-        //     this->append(0);
-        // }
-        // this->append(value);
-
-        if (index >= current_max_capacity)
-        {
-            int growth_factor = index / current_max_capacity + 1;
-            std::cout << "Growth factor: " << growth_factor << std::endl;
-            this->resize(growth_factor);
-        }
-        for (size_t i = size; i < index; i++)
-        {
-            array[size] = 0;
-            size++;
-        }
-        array[index] = value;
-        size++;
+        array[i] = array[i - 1];
     }
+    array[index] = value;
+    size++;
+
+    // ! Two ways of implementing case where index is bigger than size, other way is to just not let the user to do that
+
+    // else
+    // {
+
+    // ? First method
+
+    // index >= size
+    // easier way but thought that spliting this case into > max_capacity and < max_capacity
+    // would be more efficient
+
+    // for (size_t i = size; i < index; i++)
+    // {
+    //     this->append(0);
+    // }
+    // this->append(value);
+
+    // ? Second method
+
+    // if (index >= current_max_capacity)
+    // {
+    //     int growth_factor = index / current_max_capacity + 1;
+    //     std::cout << "Growth factor: " << growth_factor << std::endl;
+    //     this->resize(growth_factor);
+    // }
+    // for (size_t i = size; i < index; i++)
+    // {
+    //     array[size] = 0;
+    //     size++;
+    // }
+    // array[index] = value;
+    // size++;
+    // }
 }
 
 int main()
 {
     DynamicArray array;
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 25; i++)
     {
         array.display();
         array.append(i);
@@ -119,4 +154,5 @@ int main()
     array.insert(100, 40);
     array.insert(15, -25);
     array.display();
+    array.search(20);
 }

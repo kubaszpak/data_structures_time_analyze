@@ -1,4 +1,6 @@
 #include <cstddef>
+#include <cassert>
+#include <iostream>
 
 class DynamicArray
 {
@@ -10,6 +12,9 @@ public:
     ~DynamicArray();
     void append(const int value);
     void insert(const int index, const int value);
+    void insert_at_start(const int value);
+    void search(const int value) const;
+    // void delete();
     // void resize();
     void resize(const int growth_factor = GROWTH_FACTOR);
     void display() const;
