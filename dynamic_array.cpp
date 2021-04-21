@@ -29,12 +29,12 @@ size_t DynamicArray::get_size() const
     return size;
 }
 
-void DynamicArray::resize(const int growth_factor /* GROWTH_FACTOR */)
+void DynamicArray::resize(const int scale_factor /* SCALE_FACTOR */)
 {
 
-    if (growth_factor <= 1)
+    if (scale_factor <= 1)
         return;
-    current_max_capacity = current_max_capacity * growth_factor;
+    current_max_capacity = current_max_capacity * scale_factor;
     int *new_array = new int[current_max_capacity];
     for (size_t i = 0; i < size; i++)
     {
@@ -84,12 +84,12 @@ void DynamicArray::append(const int value)
     // }
     // array[size] = value;
     // size++;
-    this->insert(size, value);
+    this->add(size, value);
 }
 
-void DynamicArray::insert_at_start(const int value)
+void DynamicArray::add_at_start(const int value)
 {
-    this->insert(0, value);
+    this->add(0, value);
 }
 
 void DynamicArray::display() const
@@ -106,11 +106,11 @@ void DynamicArray::display() const
               << "Size = " << size << ", Current Max Size = " << current_max_capacity << std::endl;
 }
 
-void DynamicArray::insert(const int index, const int value)
+void DynamicArray::add(const int index, const int value)
 {
     if (index < 0 || index > size)
     {
-        std::cout << "Cannot insert an element at index " << index << std::endl;
+        std::cout << "Cannot add an element at index " << index << std::endl;
         return;
     }
     else if (size == current_max_capacity)
@@ -118,7 +118,7 @@ void DynamicArray::insert(const int index, const int value)
         this->resize();
     }
 
-    // ? should DynamicArray move each element 1 space when inserting a new element in the middle or should it just update it
+    // ? should DynamicArray move each element 1 space when adding a new element in the middle or should it just update it
 
     for (int i = size; i > index; i--)
     {
@@ -148,9 +148,9 @@ void DynamicArray::insert(const int index, const int value)
 
     // if (index >= current_max_capacity)
     // {
-    //     int growth_factor = index / current_max_capacity + 1;
-    //     std::cout << "Growth factor: " << growth_factor << std::endl;
-    //     this->resize(growth_factor);
+    //     int scale_factor = index / current_max_capacity + 1;
+    //     std::cout << "Growth factor: " << scale_factor << std::endl;
+    //     this->resize(scale_factor);
     // }
     // for (size_t i = size; i < index; i++)
     // {
@@ -165,15 +165,24 @@ void DynamicArray::insert(const int index, const int value)
 int main()
 {
     DynamicArray array;
-    for (int i = 0; i < 25; i++)
+    for (int i = 0; i < 10; i++)
     {
         array.display();
         array.append(i);
     }
-    array.insert(5, 20);
-    array.insert(-2, 10);
-    array.insert(100, 40);
-    array.insert(15, -25);
-    array.display();
+    array.add(5, 20);
+    array.add(-2, 10);
+    array.add(100, 40);
+    array.add(15, -25);
     array.search(20);
+    array.search(80);
+    array.add_at_start(20);
+    array.append(21);
+    array.delete_at(10);
+    array.delete_at(10);
+    for (int i = 0; i < 10; i++)
+    {
+        array.delete_at(0);
+        array.display();
+    }
 }
