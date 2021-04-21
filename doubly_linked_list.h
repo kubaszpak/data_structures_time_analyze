@@ -12,7 +12,7 @@ class DoublyLinkedList
 {
 public:
     DoublyLinkedList();
-    // ~DoublyLinkedList();
+    ~DoublyLinkedList();
     void add_start(const int value);
     void add_end(const int value);
     void add_after(Node *node, const int value);

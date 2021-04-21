@@ -6,6 +6,20 @@ DoublyLinkedList::DoublyLinkedList()
     end_node = nullptr;
 }
 
+DoublyLinkedList::~DoublyLinkedList()
+{
+    if (start_node == nullptr)
+    {
+        return;
+    }
+    Node *current = start_node;
+    while (current != nullptr)
+    {
+        current = current->next;
+        delete current->previous;
+    }
+}
+
 void DoublyLinkedList::add_start(const int value)
 {
     Node *temp = new Node();
@@ -68,33 +82,49 @@ void DoublyLinkedList::print_from_start() const
 {
     if (start_node == nullptr)
     {
-        std::cout << "\nList is empty\n\n";
+        std::cout << "List is empty" << std::endl;
         return;
     }
     Node *current = start_node;
     while (current != nullptr)
     {
+        std::cout << current->value;
         current = current->next;
+        if (current != nullptr)
+        {
+            std::cout << " ";
+        }
     }
+    std::cout << std::endl;
 }
 
 void DoublyLinkedList::print_from_end() const
 {
     if (end_node == nullptr)
     {
-        std::cout << "\nList is empty\n\n";
+        std::cout << "List is empty" << std::endl;
         return;
     }
     Node *current = end_node;
     while (current != nullptr)
     {
+        std::cout << current->value;
         current = current->previous;
+        if (current != nullptr)
+        {
+            std::cout << " ";
+        }
     }
+    std::cout << std::endl;
 }
 
 int main()
 {
     DoublyLinkedList list;
-    list.add_start(3);
+    list.add_end(3);
+    list.add_end(3);
+    list.add_end(3);
+    list.add_end(3);
+    list.print_from_start();
     return 0;
 }
