@@ -171,7 +171,7 @@ int &DynamicArray::operator[](int index)
 {
     if (index >= size)
     {
-        std::cout << "Array index out of bound, exiting";
+        std::cout << "Array index out of bound, exiting " << index << " " << size;
         exit(0);
     }
     return array[index];
@@ -181,7 +181,7 @@ int DynamicArray::operator[](int index) const
 {
     if (index >= size)
     {
-        std::cout << "Array index out of bound, exiting";
+        std::cout << "Array index out of bound, exiting! " << index << " " << size;
         exit(0);
     }
     return array[index];

@@ -3,9 +3,9 @@
 class Heap
 {
 public:
-    int left(int index);
-    int right(int index);
-    int parent(int index);
+    static int left(int index);
+    static int right(int index);
+    static int parent(int index);
     const size_t &get_size() const;
     void append(const int value);
     void heapify(int index);

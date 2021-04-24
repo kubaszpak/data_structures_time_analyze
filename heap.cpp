@@ -24,27 +24,31 @@ void Heap::heapify(int index)
     int l = left(index);
     int r = right(index);
     int largest = index;
-    if (l <= array.get_size() || array[l] > array[largest])
+    if (l < array.get_size() && array[l] > array[largest])
     {
         largest = l;
     }
-    if (r <= array.get_size() || array[r] > array[largest])
+    if (r < array.get_size() && array[r] > array[largest])
     {
         largest = r;
     }
     if (largest != index)
     {
         std::swap(array[largest], array[index]);
-        std::cout << largest << std::endl;
+        // int temp = array[largest];
+        // array[largest] = array[index];
+        // array[index] = temp;
+        // std::cout << largest << std::endl;
         heapify(largest);
     }
     return;
 }
 
+// chcp 65001
 void Heap::printBT(const std::string &prefix, const int index, bool isLeft)
 {
 
-    if (index <= array.get_size())
+    if (index <= array.get_size() - 1)
     {
         std::cout << prefix;
 
@@ -54,8 +58,8 @@ void Heap::printBT(const std::string &prefix, const int index, bool isLeft)
         std::cout << array[index] << std::endl;
 
         // enter the next tree level - left and right branch
-        this->printBT(prefix + (isLeft ? "│   " : "    "), this->left(index), true);
-        this->printBT(prefix + (isLeft ? "│   " : "    "), this->right(index), false);
+        this->printBT(prefix + (isLeft ? "│   " : "    "), left(index), true);
+        this->printBT(prefix + (isLeft ? "│   " : "    "), right(index), false);
     }
 }
 
@@ -80,9 +84,9 @@ int main()
     heap.append(4);
     heap.append(5);
     heap.append(6);
+    // std::cout << heap.get_size() << std::endl;
     heap.display();
-    std::cout << heap.get_size() << std::endl;
-    // heap.heapify(0);
+    heap.heapify(0);
     heap.display();
 
     return 0;
