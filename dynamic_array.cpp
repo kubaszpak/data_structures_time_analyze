@@ -24,7 +24,7 @@ DynamicArray::~DynamicArray()
     delete[] array;
 }
 
-size_t DynamicArray::get_size() const
+const size_t &DynamicArray::get_size() const
 {
     return size;
 }
@@ -167,27 +167,47 @@ void DynamicArray::add(const int index, const int value)
     // }
 }
 
-int main()
+int &DynamicArray::operator[](int index)
 {
-    DynamicArray array;
-    for (int i = 0; i < 10; i++)
+    if (index >= size)
     {
-        array.display();
-        array.append(i);
+        std::cout << "Array index out of bound, exiting";
+        exit(0);
     }
-    array.add(5, 20);
-    array.add(-2, 10);
-    array.add(100, 40);
-    array.add(15, -25);
-    array.search(20);
-    array.search(80);
-    array.add_at_start(20);
-    array.append(21);
-    array.delete_at(10);
-    array.delete_at(10);
-    for (int i = 0; i < 10; i++)
-    {
-        array.delete_at(0);
-        array.display();
-    }
+    return array[index];
 }
+
+int DynamicArray::operator[](int index) const
+{
+    if (index >= size)
+    {
+        std::cout << "Array index out of bound, exiting";
+        exit(0);
+    }
+    return array[index];
+}
+
+// int main()
+// {
+//     DynamicArray array;
+//     for (int i = 0; i < 10; i++)
+//     {
+//         array.display();
+//         array.append(i);
+//     }
+//     array.add(5, 20);
+//     array.add(-2, 10);
+//     array.add(100, 40);
+//     array.add(15, -25);
+//     array.search(20);
+//     array.search(80);
+//     array.add_at_start(20);
+//     array.append(21);
+//     array.delete_at(10);
+//     array.delete_at(10);
+//     for (int i = 0; i < 10; i++)
+//     {
+//         array.delete_at(0);
+//         array.display();
+//     }
+// }

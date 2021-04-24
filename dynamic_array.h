@@ -9,7 +9,7 @@ public:
     // DynamicArray();
     DynamicArray(const int inital_size = INITIAL_SIZE);
     ~DynamicArray();
-    size_t get_size() const;
+    const size_t &get_size() const;
     void append(const int value);
     void add(const int index, const int value);
     void add_at_start(const int value);
@@ -18,6 +18,8 @@ public:
     // void resize();
     void resize(const int SCALE_FACTOR = SCALE_FACTOR);
     void display() const;
+    int &operator[](int index);
+    int operator[](int index) const;
 
 private:
     static constexpr unsigned int INITIAL_SIZE = 8;
