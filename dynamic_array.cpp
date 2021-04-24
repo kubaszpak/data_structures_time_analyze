@@ -44,6 +44,8 @@ void DynamicArray::resize(const int scale_factor /* SCALE_FACTOR */)
     array = new_array;
 }
 
+// Print every element with value value
+// TODO Make this function actually return index of first found element
 void DynamicArray::search(const int value) const
 {
     bool found = false;
@@ -61,6 +63,7 @@ void DynamicArray::search(const int value) const
     }
 }
 
+// Delete element at index index, shift rest to left
 void DynamicArray::delete_at(const int index)
 {
     if (index < 0 || index >= size)
@@ -75,6 +78,7 @@ void DynamicArray::delete_at(const int index)
     }
 }
 
+// Add new element at the end of array
 void DynamicArray::append(const int value)
 {
     // if (size == current_max_capacity)
@@ -87,6 +91,7 @@ void DynamicArray::append(const int value)
     this->add(size, value);
 }
 
+// Add new element at start, shift rest to the right
 void DynamicArray::add_at_start(const int value)
 {
     this->add(0, value);

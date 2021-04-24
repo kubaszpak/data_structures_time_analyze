@@ -5,8 +5,6 @@
 class DynamicArray
 {
 public:
-    static constexpr unsigned int INITIAL_SIZE = 8;
-    static constexpr unsigned int SCALE_FACTOR = 2;
     // DynamicArray();
     DynamicArray(const int inital_size = INITIAL_SIZE);
     ~DynamicArray();
@@ -21,6 +19,8 @@ public:
     void display() const;
 
 private:
+    static constexpr unsigned int INITIAL_SIZE = 8;
+    static constexpr unsigned int SCALE_FACTOR = 2;
     int *array;
     size_t size;
     size_t current_max_capacity;
