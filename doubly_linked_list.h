@@ -21,6 +21,8 @@ public:
     void print_from_start() const;
     void print_from_end() const;
     void delete_node(Node *node);
+    void delete_start();
+    void delete_end();
     Node *get_from_start(const int value) const;
     Node *get_from_end(const int value) const;
 

@@ -21,6 +21,7 @@ DoublyLinkedList::~DoublyLinkedList()
     delete end_node;
 }
 
+// add new HEAD node
 void DoublyLinkedList::add_start(const int value)
 {
     Node *temp = new Node();
@@ -40,6 +41,7 @@ void DoublyLinkedList::add_start(const int value)
     start_node = temp;
 }
 
+// add new TAIL node
 void DoublyLinkedList::add_end(const int value)
 {
     Node *temp = new Node();
@@ -59,9 +61,11 @@ void DoublyLinkedList::add_end(const int value)
     end_node = temp;
 }
 
+// This function takes node and puts a new one right after this one in the list
+// TODO Make this function take a value instead of pointer to Node and use search to get the Node
 void DoublyLinkedList::add_after(Node *node, const int value)
 {
-
+    // TODO change assert to correct if statement and return
     assert(node != nullptr);
 
     // {node, value, node->next}
@@ -80,8 +84,11 @@ void DoublyLinkedList::add_after(Node *node, const int value)
     }
 }
 
+// This function takes node and puts a new one right before this one in the list
+// TODO Make this function take a value instead of pointer to Node and use search to get the Node
 void DoublyLinkedList::add_before(Node *node, const int value)
 {
+    // TODO change assert to correct if statement and return
     assert(node != nullptr);
 
     Node *temp = new Node();
@@ -144,6 +151,56 @@ void DoublyLinkedList::delete_node(Node *node)
     return;
 }
 
+// This function deletes HEAD node
+void DoublyLinkedList::delete_start()
+{
+    if (start_node == nullptr)
+    {
+        std::cout << "List is empty" << std::endl;
+        return;
+    }
+    else if (start_node == end_node)
+    {
+        delete start_node;
+        delete end_node;
+        start_node = nullptr;
+        end_node = nullptr;
+        return;
+    }
+    else
+    {
+        start_node = start_node->next;
+        delete start_node->previous;
+        start_node->previous = nullptr;
+    }
+}
+
+// This function deletes TAIL node
+void DoublyLinkedList::delete_end()
+{
+    if (end_node == nullptr)
+    {
+        std::cout << "List is empty" << std::endl;
+        return;
+    }
+    else if (start_node == end_node)
+    {
+        delete start_node;
+        delete end_node;
+        start_node = nullptr;
+        end_node = nullptr;
+        return;
+    }
+    else
+    {
+
+        end_node = end_node->previous;
+        delete end_node->next;
+        end_node->next = nullptr;
+    }
+}
+
+// This function returns first in order Node with value as value field
 Node *DoublyLinkedList::get_from_start(const int value) const
 {
     if (start_node == nullptr)
@@ -161,6 +218,7 @@ Node *DoublyLinkedList::get_from_start(const int value) const
     return nullptr;
 }
 
+// This function returns last in order Node with value as value field
 Node *DoublyLinkedList::get_from_end(const int value) const
 {
     if (end_node == nullptr)
@@ -201,5 +259,13 @@ int main()
     list.add_end(1);
     list.print_from_start();
     list.print_from_end();
+    for (int i = 0; i < 20; i++)
+    {
+        list.delete_start();
+    }
+    list.print_from_end();
+    list.add_start(1);
+    list.add_end(2);
+    list.print_from_start();
     return 0;
 }
