@@ -20,10 +20,11 @@ public:
     void add_before(Node *node, const int value);
     void print_from_start() const;
     void print_from_end() const;
-    Node *search_for_from_start(const int value) const;
-    Node *search_for_from_end(const int value) const;
+    void delete_node(Node *node);
+    Node *get_from_start(const int value) const;
+    Node *get_from_end(const int value) const;
 
-    // private:
+private:
     Node *start_node;
     Node *end_node;
 };

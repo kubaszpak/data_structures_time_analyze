@@ -18,6 +18,7 @@ DoublyLinkedList::~DoublyLinkedList()
         current = current->next;
         delete current->previous;
     }
+    delete end_node;
 }
 
 void DoublyLinkedList::add_start(const int value)
@@ -138,23 +139,42 @@ void DoublyLinkedList::print_from_end() const
     std::cout << std::endl;
 }
 
-Node *DoublyLinkedList::search_for_from_start(const int value) const
+void DoublyLinkedList::delete_node(Node *node)
+{
+    return;
+}
+
+Node *DoublyLinkedList::get_from_start(const int value) const
 {
     if (start_node == nullptr)
     {
+        std::cout << "List is empty" << std::endl;
         return nullptr;
     }
     Node *current = start_node;
     while (current != nullptr)
     {
+        if (current->value == value)
+            return current;
         current = current->next;
-        delete current->previous;
     }
     return nullptr;
 }
 
-Node *DoublyLinkedList::search_for_from_end(const int value) const
+Node *DoublyLinkedList::get_from_end(const int value) const
 {
+    if (end_node == nullptr)
+    {
+        std::cout << "List is empty" << std::endl;
+        return nullptr;
+    }
+    Node *current = end_node;
+    while (current != nullptr)
+    {
+        if (current->value == value)
+            return current;
+        current = current->previous;
+    }
     return nullptr;
 }
 
@@ -162,12 +182,23 @@ int main()
 {
     DoublyLinkedList list;
     list.add_start(1);
+    Node *one = list.get_from_start(1);
     for (int i = 0; i < 4; i++)
     {
-        list.add_before(list.start_node, i);
-        list.add_after(list.end_node, i);
+        list.add_before(one, i);
+        list.add_after(one, i);
     }
-    std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
+    // std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
+    list.print_from_start();
+    list.print_from_end();
+    Node *works = list.get_from_start(1);
+    for (int i = 0; i < 4; i++)
+    {
+        list.add_before(works, i);
+        list.add_after(works, i);
+    }
+    // std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
+    list.add_end(1);
     list.print_from_start();
     list.print_from_end();
     return 0;
