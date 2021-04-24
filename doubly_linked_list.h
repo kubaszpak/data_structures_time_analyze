@@ -9,6 +9,7 @@ struct Node
     struct Node *previous;
 };
 
+// TODO delete_ndoe, add_after, add_before should probably take value to search for as argument and should use get_from_start
 class DoublyLinkedList
 {
 public:

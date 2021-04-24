@@ -146,9 +146,28 @@ void DoublyLinkedList::print_from_end() const
     std::cout << std::endl;
 }
 
+// This function deletes node passed as pointer
+// TODO it the future it should probably take value and search for it to get pointer to the Node
 void DoublyLinkedList::delete_node(Node *node)
 {
-    return;
+
+    assert(node != nullptr);
+
+    if (node == start_node)
+    {
+        this->delete_start();
+    }
+    else if (node == end_node)
+    {
+        this->delete_end();
+    }
+    else
+    {
+        Node *temp = node->previous;
+        temp->next = node->next;
+        delete node;
+        temp->next->previous = temp;
+    }
 }
 
 // This function deletes HEAD node
@@ -200,7 +219,7 @@ void DoublyLinkedList::delete_end()
     }
 }
 
-// This function returns first in order Node with value as value field
+// This function returns first in order Node with specified value
 Node *DoublyLinkedList::get_from_start(const int value) const
 {
     if (start_node == nullptr)
@@ -218,7 +237,7 @@ Node *DoublyLinkedList::get_from_start(const int value) const
     return nullptr;
 }
 
-// This function returns last in order Node with value as value field
+// This function returns last in order Node with specified value
 Node *DoublyLinkedList::get_from_end(const int value) const
 {
     if (end_node == nullptr)
@@ -266,6 +285,19 @@ int main()
     list.print_from_end();
     list.add_start(1);
     list.add_end(2);
+    list.print_from_start();
+    list.add_start(1);
+    list.add_start(2);
+    list.add_start(3);
+    Node *two = list.get_from_start(2);
+    list.delete_node(two);
+    list.delete_end();
+    list.delete_end();
+    list.delete_start();
+    list.print_from_start();
+    list.delete_end();
+    list.delete_end();
+    list.delete_end();
     list.print_from_start();
     return 0;
 }

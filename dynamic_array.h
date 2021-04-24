@@ -2,6 +2,7 @@
 #include <cassert>
 #include <iostream>
 
+// TODO insert
 class DynamicArray
 {
 public:
