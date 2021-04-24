@@ -60,21 +60,41 @@ void DoublyLinkedList::add_end(const int value)
 
 void DoublyLinkedList::add_after(Node *node, const int value)
 {
-    Node *temp = new Node({node, value, node->next});
+
+    assert(node != nullptr);
+
+    // {node, value, node->next}
+    Node *temp = new Node();
+    temp->previous = node;
+    temp->value = value;
+    temp->next = node->next;
     node->next = temp;
     if (temp->next != nullptr)
     {
         temp->next->previous = temp;
     }
+    else
+    {
+        end_node = temp;
+    }
 }
 
 void DoublyLinkedList::add_before(Node *node, const int value)
 {
-    Node *temp = new Node({node->previous, value, node});
+    assert(node != nullptr);
+
+    Node *temp = new Node();
+    temp->previous = node->previous;
+    temp->value = value;
+    temp->next = node;
     node->previous = temp;
     if (temp->previous != nullptr)
     {
         temp->previous->next = temp;
+    }
+    else
+    {
+        start_node = temp;
     }
 }
 
@@ -118,13 +138,37 @@ void DoublyLinkedList::print_from_end() const
     std::cout << std::endl;
 }
 
+Node *DoublyLinkedList::search_for_from_start(const int value) const
+{
+    if (start_node == nullptr)
+    {
+        return nullptr;
+    }
+    Node *current = start_node;
+    while (current != nullptr)
+    {
+        current = current->next;
+        delete current->previous;
+    }
+    return nullptr;
+}
+
+Node *DoublyLinkedList::search_for_from_end(const int value) const
+{
+    return nullptr;
+}
+
 int main()
 {
     DoublyLinkedList list;
-    list.add_end(3);
-    list.add_end(3);
-    list.add_end(3);
-    list.add_end(3);
+    list.add_start(1);
+    for (int i = 0; i < 4; i++)
+    {
+        list.add_before(list.start_node, i);
+        list.add_after(list.end_node, i);
+    }
+    std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
     list.print_from_start();
+    list.print_from_end();
     return 0;
 }
