@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 
 struct BST_Node
 {
@@ -21,11 +22,14 @@ class BST
 public:
     BST();
     ~BST();
-    void cleanup_recursively(BST_Node *node);
-    void insert(const int value);
+    // void delete_node(BST_Node *node);
     void print();
+    void insert(const int value);
+    BST_Node *find_successor(BST_Node *node);
+    BST_Node *find_min_key(BST_Node *node);
 
 private:
-    static void printBT(const std::string &prefix, const BST_Node *node, bool isLeft);
-    BST_Node *root;
+    static void printBT(const std::string &prefix, BST_Node *node, bool isLeft);
+    void cleanup_recursively(BST_Node *node);
+    BST_Node *root = nullptr;
 };
