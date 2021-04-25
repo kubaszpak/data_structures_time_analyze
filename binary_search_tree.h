@@ -7,14 +7,12 @@ struct BST_Node
     BST_Node *parent;
     int value;
 
-    static BST_Node *new_node(int value)
+    BST_Node(int value)
     {
-        BST_Node *node;
-        node->left = nullptr;
-        node->right = nullptr;
-        node->parent = nullptr;
-        node->value = value;
-        return node;
+
+        this->left = this->right = nullptr;
+        this->parent = nullptr;
+        this->value = value;
     }
 };
 
@@ -23,8 +21,11 @@ class BST
 public:
     BST();
     ~BST();
+    void cleanup_recursively(BST_Node *node);
     void insert(const int value);
+    void print();
 
 private:
+    static void printBT(const std::string &prefix, const BST_Node *node, bool isLeft);
     BST_Node *root;
 };
