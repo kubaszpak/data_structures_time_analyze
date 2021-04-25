@@ -19,7 +19,7 @@ public:
     void resize(const int SCALE_FACTOR = SCALE_FACTOR);
     void display() const;
     int &operator[](int index);
-    int operator[](int index) const;
+    const int &operator[](int index) const;
 
 private:
     static constexpr unsigned int INITIAL_SIZE = 8;

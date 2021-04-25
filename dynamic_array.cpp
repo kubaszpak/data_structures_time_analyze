@@ -111,6 +111,7 @@ void DynamicArray::display() const
               << "Size = " << size << ", Current Max Size = " << current_max_capacity << std::endl;
 }
 
+// adds a new element to array shifting every element after the index 1 to the right
 void DynamicArray::add(const int index, const int value)
 {
     if (index < 0 || index > size)
@@ -131,58 +132,25 @@ void DynamicArray::add(const int index, const int value)
     }
     array[index] = value;
     size++;
-
-    // ! Two ways of implementing case where index is bigger than size, other way is to just not let the user to do that
-
-    // else
-    // {
-
-    // ? First method
-
-    // index >= size
-    // easier way but thought that spliting this case into > max_capacity and < max_capacity
-    // would be more efficient
-
-    // for (size_t i = size; i < index; i++)
-    // {
-    //     this->append(0);
-    // }
-    // this->append(value);
-
-    // ? Second method
-
-    // if (index >= current_max_capacity)
-    // {
-    //     int scale_factor = index / current_max_capacity + 1;
-    //     std::cout << "Growth factor: " << scale_factor << std::endl;
-    //     this->resize(scale_factor);
-    // }
-    // for (size_t i = size; i < index; i++)
-    // {
-    //     array[size] = 0;
-    //     size++;
-    // }
-    // array[index] = value;
-    // size++;
-    // }
 }
 
+// TODO handle exit
 int &DynamicArray::operator[](int index)
 {
-    if (index >= size)
+    if (index >= size || index < 0)
     {
-        std::cout << "Array index out of bound, exiting " << index << " " << size;
-        exit(0);
+        std::cout << "Array index out of bound, exiting! Index: " << index << " size: " << size << std::endl;
+        throw std::invalid_argument("Array index out of bounds");
     }
     return array[index];
 }
 
-int DynamicArray::operator[](int index) const
+const int &DynamicArray::operator[](int index) const
 {
-    if (index >= size)
+    if (index >= size || index < 0)
     {
-        std::cout << "Array index out of bound, exiting! " << index << " " << size;
-        exit(0);
+        std::cout << "Array index const call out of bound, exiting! Index: " << index << " size: " << size << std::endl;
+        throw std::invalid_argument("Array index out of bounds");
     }
     return array[index];
 }

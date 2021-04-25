@@ -19,7 +19,7 @@ const size_t &Heap::get_size() const
 }
 
 // restore heap property
-void Heap::heapify(int index)
+void Heap::max_heapify(int index)
 {
     int l = left(index);
     int r = right(index);
@@ -39,16 +39,24 @@ void Heap::heapify(int index)
         // array[largest] = array[index];
         // array[index] = temp;
         // std::cout << largest << std::endl;
-        heapify(largest);
+        max_heapify(largest);
     }
     return;
+}
+
+void Heap::build_heap()
+{
+    for (int i = this->get_size() / 2 - 1; i >= 0; i--)
+    {
+        this->max_heapify(i);
+    }
 }
 
 // chcp 65001
 void Heap::printBT(const std::string &prefix, const int index, bool isLeft)
 {
 
-    if (index <= array.get_size() - 1)
+    if (index < array.get_size())
     {
         std::cout << prefix;
 
@@ -67,27 +75,66 @@ void Heap::printBT(const std::string &prefix, const int index, bool isLeft)
 void Heap::display()
 {
     this->printBT("", 0, false);
+    std::cout << std::endl;
 }
 
-// TODO change this function its not right
-void Heap::append(const int value)
+// void Heap::append(const int value)
+// {
+//     array.append(value);
+// }
+
+void Heap::insert_key(const int value)
 {
     array.append(value);
+
+    int i = array.get_size() - 1;
+    while (i != 0 && array[parent(i)] < array[i])
+    {
+        std::swap(array[i], array[parent(i)]);
+        i = parent(i);
+    }
+}
+
+void Heap::delete_max()
+{
+    if (this->get_size() == 0)
+    {
+        return;
+    }
+    else if (this->get_size() == 1)
+    {
+        this->array.delete_at(0);
+        return;
+    }
+    else
+    {
+        this->array[0] = this->array[this->get_size() - 1];
+        this->array.delete_at(this->get_size() - 1);
+        this->max_heapify(0);
+    }
 }
 
 int main()
 {
     Heap heap;
-    heap.append(1);
-    heap.append(2);
-    heap.append(3);
-    heap.append(4);
-    heap.append(5);
-    heap.append(6);
+
+    for (int i = 0; i < 10; i++)
+    {
+        heap.insert_key(i);
+    }
     // std::cout << heap.get_size() << std::endl;
     heap.display();
-    heap.heapify(0);
+    heap.build_heap();
     heap.display();
 
+    for (int i = 0; i < 10; i++)
+    {
+        heap.delete_max();
+        heap.display();
+    }
+
+    // heap.array[1] = 1;
+    // heap.build_heap();
+    // heap.display();
     return 0;
 }
