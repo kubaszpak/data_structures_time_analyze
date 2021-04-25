@@ -255,49 +255,49 @@ Node *DoublyLinkedList::get_from_end(const int value) const
     return nullptr;
 }
 
-int main()
-{
-    DoublyLinkedList list;
-    list.add_start(1);
-    Node *one = list.get_from_start(1);
-    for (int i = 0; i < 4; i++)
-    {
-        list.add_before(one, i);
-        list.add_after(one, i);
-    }
-    // std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
-    list.print_from_start();
-    list.print_from_end();
-    Node *works = list.get_from_start(1);
-    for (int i = 0; i < 4; i++)
-    {
-        list.add_before(works, i);
-        list.add_after(works, i);
-    }
-    // std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
-    list.add_end(1);
-    list.print_from_start();
-    list.print_from_end();
-    for (int i = 0; i < 20; i++)
-    {
-        list.delete_start();
-    }
-    list.print_from_end();
-    list.add_start(1);
-    list.add_end(2);
-    list.print_from_start();
-    list.add_start(1);
-    list.add_start(2);
-    list.add_start(3);
-    Node *two = list.get_from_start(2);
-    list.delete_node(two);
-    list.delete_end();
-    list.delete_end();
-    list.delete_start();
-    list.print_from_start();
-    list.delete_end();
-    list.delete_end();
-    list.delete_end();
-    list.print_from_start();
-    return 0;
-}
+// int main()
+// {
+//     DoublyLinkedList list;
+//     list.add_start(1);
+//     Node *one = list.get_from_start(1);
+//     for (int i = 0; i < 4; i++)
+//     {
+//         list.add_before(one, i);
+//         list.add_after(one, i);
+//     }
+//     // std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
+//     list.print_from_start();
+//     list.print_from_end();
+//     Node *works = list.get_from_start(1);
+//     for (int i = 0; i < 4; i++)
+//     {
+//         list.add_before(works, i);
+//         list.add_after(works, i);
+//     }
+//     // std::cout << list.start_node->value << " " << list.end_node->value << std::endl;
+//     list.add_end(1);
+//     list.print_from_start();
+//     list.print_from_end();
+//     for (int i = 0; i < 20; i++)
+//     {
+//         list.delete_start();
+//     }
+//     list.print_from_end();
+//     list.add_start(1);
+//     list.add_end(2);
+//     list.print_from_start();
+//     list.add_start(1);
+//     list.add_start(2);
+//     list.add_start(3);
+//     Node *two = list.get_from_start(2);
+//     list.delete_node(two);
+//     list.delete_end();
+//     list.delete_end();
+//     list.delete_start();
+//     list.print_from_start();
+//     list.delete_end();
+//     list.delete_end();
+//     list.delete_end();
+//     list.print_from_start();
+//     return 0;
+// }

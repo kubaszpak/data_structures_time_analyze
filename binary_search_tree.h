@@ -22,9 +22,9 @@ class BST
 public:
     BST();
     ~BST();
-    // void delete_node(BST_Node *node);
     void print();
     void insert(const int value);
+    BST_Node *search(const int key);
     BST_Node *find_successor(BST_Node *node);
     BST_Node *find_min_key(BST_Node *node);
 

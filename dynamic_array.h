@@ -6,7 +6,6 @@
 class DynamicArray
 {
 public:
-    // DynamicArray();
     DynamicArray(const int inital_size = INITIAL_SIZE);
     ~DynamicArray();
     const size_t &get_size() const;
