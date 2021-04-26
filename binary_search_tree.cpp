@@ -79,6 +79,32 @@ BST_Node *BST::find_min_key(BST_Node *node)
     return node;
 }
 
+BST_Node *BST::search(const int key)
+{
+    BST_Node *point = this->search(key, root);
+    if (point == nullptr)
+    {
+        std::cout << "There aren't any nodes with key " << key << std::endl;
+    }
+    return point;
+}
+
+BST_Node *BST::search(const int key, BST_Node *node)
+{
+    if (node == nullptr || node->value == key)
+    {
+        return node;
+    }
+    if (key >= node->value)
+    {
+        return search(key, node->right);
+    }
+    else
+    {
+        return search(key, node->left);
+    }
+}
+
 // chcp 65001
 void BST::printBT(const std::string &prefix, BST_Node *node, bool isLeft)
 {
@@ -113,5 +139,14 @@ void BST::print()
 //     for (int i = 0; i < 20; i++)
 //         bst.insert(dist(gen));
 //     bst.print();
+//     BST_Node *node = bst.search(7263);
+//     if (node == nullptr)
+//     {
+//         std::cout << "simea" << std::endl;
+//     }
+//     else
+//     {
+//         std::cout << node->value << std::endl;
+//     }
 //     return 0;
 // }

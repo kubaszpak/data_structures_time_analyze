@@ -330,7 +330,8 @@ int main()
                     }
                     else
                     {
-                        std::cout << "Chosen Node: " << bst_node->value << std::endl;
+                        std::cout << "Chosen Node: " << bst_node->value << std::endl
+                                  << std::endl;
                     }
                     take_input(choice, output_check);
                     if (output_check == 1)
@@ -338,7 +339,34 @@ int main()
                         switch (choice)
                         {
                         case 1:
-                            std::cout << "TEST INNER LOOP" << std::endl;
+                            bst.insert(dist(rng));
+                            break;
+                        case 2:
+                            std::cout << "Specify a value from bst above, that u want to select to do further operations on" << std::endl;
+                            x = take_int_input(x);
+                            bst_node = bst.search(x);
+                            wait_for_enter();
+                            break;
+                        case 3:
+                            if (bst_node == nullptr)
+                            {
+                                std::cout << "Select a node first, use second operation from the menu to do that" << std::endl;
+                            }
+                            else
+                            {
+                                bst_node = bst.find_successor(bst_node);
+                            }
+                            wait_for_enter();
+                            break;
+                        case 4:
+                            if (bst_node == nullptr)
+                            {
+                                std::cout << "Select a node first, use second operation from the menu to do that" << std::endl;
+                            }
+                            else
+                            {
+                                bst_node = bst.find_min_key(bst_node);
+                            }
                             wait_for_enter();
                             break;
                         case 5:
