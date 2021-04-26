@@ -17,11 +17,11 @@ public:
     ~DoublyLinkedList();
     void add_start(const int value);
     void add_end(const int value);
-    void add_after(Node *node, const int value);
-    void add_before(Node *node, const int value);
+    void add_after(int node_value, const int value);
+    void add_before(int node_value, const int value);
     void print_from_start() const;
     void print_from_end() const;
-    void delete_node(Node *node);
+    void delete_node(int node_value);
     void delete_start();
     void delete_end();
     Node *get_from_start(const int value) const;

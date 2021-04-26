@@ -10,7 +10,7 @@ public:
     void display();
     void insert_key(const int value);
     void delete_max();
-    // void append(const int value);
+    void append_without_rebalancing(const int value);
 
 private:
     static int left(int index);

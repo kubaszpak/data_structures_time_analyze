@@ -35,10 +35,6 @@ void Heap::max_heapify(int index)
     if (largest != index)
     {
         std::swap(array[largest], array[index]);
-        // int temp = array[largest];
-        // array[largest] = array[index];
-        // array[index] = temp;
-        // std::cout << largest << std::endl;
         max_heapify(largest);
     }
     return;
@@ -78,10 +74,10 @@ void Heap::display()
     std::cout << std::endl;
 }
 
-// void Heap::append(const int value)
-// {
-//     array.append(value);
-// }
+void Heap::append_without_rebalancing(const int value)
+{
+    array.append(value);
+}
 
 void Heap::insert_key(const int value)
 {
