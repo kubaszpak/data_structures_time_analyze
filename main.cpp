@@ -1,15 +1,11 @@
-// #include "dynamic_array.cpp"
-#include "binary_search_tree.cpp"
-#include "doubly_linked_list.cpp"
-#include "heap.cpp"
+// #include "dynamic_array.h"
+#include "binary_search_tree.h"
+#include "doubly_linked_list.h"
+#include "heap.h"
 #include <random>
-// #include <cstdio>
-
-// struct Output
-// {
-//     int choice;
-//     char buff[100];
-// };
+#include <iostream>
+#include <string>
+#include <cstddef>
 
 void main_menu()
 {

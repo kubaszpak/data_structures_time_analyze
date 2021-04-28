@@ -1,4 +1,8 @@
-#include "dynamic_array.cpp"
+#ifndef HEAP_H
+#define HEAP_H
+
+#include "dynamic_array.h"
+#include <string>
 
 // TODO fix append
 class Heap
@@ -20,3 +24,5 @@ private:
 
     DynamicArray array;
 };
+
+#endif /* HEAP_H */

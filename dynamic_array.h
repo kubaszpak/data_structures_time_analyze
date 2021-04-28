@@ -1,12 +1,11 @@
+#ifndef DYNAMIC_ARRAY_H
+#define DYNAMIC_ARRAY_H
 #include <cstddef>
-#include <cassert>
-#include <iostream>
 
-// TODO insert
 class DynamicArray
 {
 public:
-    DynamicArray(const int inital_size = INITIAL_SIZE);
+    DynamicArray(int inital_size = INITIAL_SIZE);
     ~DynamicArray();
     const size_t &get_size() const;
     void append(const int value);
@@ -27,3 +26,5 @@ private:
     size_t size;
     size_t current_max_capacity;
 };
+
+#endif /* DYNAMIC_ARRAY_H */

@@ -1,5 +1,6 @@
-#include <iostream>
-#include <random>
+#ifndef BINARY_SEARCH_TREE_H
+#define BINARY_SEARCH_TREE_H
+#include <string>
 
 struct BST_Node
 {
@@ -34,3 +35,5 @@ private:
     void cleanup_recursively(BST_Node *node);
     BST_Node *root = nullptr;
 };
+
+#endif /* BINARY_SEARCH_TREE_H */

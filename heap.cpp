@@ -1,4 +1,6 @@
 #include "heap.h"
+#include <string>
+#include <iostream>
 
 int Heap::left(int index)
 {

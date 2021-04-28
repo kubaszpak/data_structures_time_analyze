@@ -1,6 +1,5 @@
-#include <cstddef>
-#include <iostream>
-#include <cassert>
+#ifndef DOUBLY_LINKED_LIST_H
+#define DOUBLY_LINKED_LIST_H
 
 struct Node
 {
@@ -31,3 +30,5 @@ private:
     Node *start_node;
     Node *end_node;
 };
+
+#endif /* DOUBLY_LINKED_LIST_H */

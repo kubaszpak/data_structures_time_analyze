@@ -1,4 +1,7 @@
 #include "dynamic_array.h"
+#include <cstddef>
+#include <cassert>
+#include <iostream>
 
 // DynamicArray::DynamicArray()
 // {
@@ -12,7 +15,7 @@
 //     size = 0;
 // }
 
-DynamicArray::DynamicArray(const int initial_size /* INITIAL_SIZE */)
+DynamicArray::DynamicArray(int initial_size /* INITIAL_SIZE */)
 {
     array = new int[initial_size];
     current_max_capacity = initial_size;
