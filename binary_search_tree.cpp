@@ -1,7 +1,4 @@
 #include "binary_search_tree.h"
-#include <iostream>
-#include <random>
-
 BST::BST()
 {
     root = nullptr;
@@ -24,7 +21,8 @@ void BST::cleanup_recursively(BST_Node *node)
 
 void BST::insert(const int value)
 {
-    BST_Node *insert_node = new BST_Node(value);
+    BST_Node *insert_node = new BST_Node();
+    insert_node->value = value;
     BST_Node *parent = nullptr;
     BST_Node *current = root;
     while (current != nullptr)
@@ -120,35 +118,108 @@ void BST::printBT(const std::string &prefix, BST_Node *node, bool isLeft)
         std::cout << node->value << std::endl;
 
         // enter the next tree level - left and right branch
-        printBT(prefix + (isLeft ? "│   " : "    "), node->left, true);
-        printBT(prefix + (isLeft ? "│   " : "    "), node->right, false);
+        this->printBT(prefix + (isLeft ? "│   " : "    "), node->left, true);
+        this->printBT(prefix + (isLeft ? "│   " : "    "), node->right, false);
     }
 }
 
 void BST::print()
 {
-    printBT("", this->root, false);
-    std::cout << "\n";
+    this->printBT("", this->root, false);
+    std::cout << std::endl;
 }
 
-// int main()
-// {
+void BST::delete_node(BST_Node *node /* delete_node */)
+{
+    BST_Node *parent_node;  // y
+    BST_Node *current_node; // x
+    if (node->left == nullptr || node->right == nullptr)
+    {
+        parent_node = node;
+    }
+    else
+    {
+        parent_node = this->find_successor(node);
+    }
+    if (parent_node->left != nullptr)
+    {
+        current_node = parent_node->left;
+    }
+    else
+    {
+        current_node = parent_node->right;
+    }
+    if (current_node != nullptr)
+    {
+        current_node->parent = parent_node->parent;
+    }
+    if (parent_node->parent == nullptr)
+    {
+        this->root = current_node;
+    }
+    else
+    {
+        if (parent_node == parent_node->parent->left)
+            parent_node->parent->left = current_node;
+        else
+            parent_node->parent->right = current_node;
+    }
+    if (parent_node != node)
+        node->value = parent_node->value;
+}
 
-//     std::random_device rd;  // non-deterministic generator
-//     std::mt19937 gen(rd()); // random engine seeded with rd()
-//     std::uniform_int_distribution<int> dist(1, 10000);
-//     BST bst;
-//     for (int i = 0; i < 20; i++)
-//         bst.insert(dist(gen));
-//     bst.print();
-//     BST_Node *node = bst.search(7263);
-//     if (node == nullptr)
-//     {
-//         std::cout << "simea" << std::endl;
-//     }
-//     else
-//     {
-//         std::cout << node->value << std::endl;
-//     }
-//     return 0;
-// }
+void BST::print_in_order()
+{
+    // heap.print();
+    std::cout << std::endl;
+
+    print_recursive(root);
+
+    std::cout << std::endl;
+}
+
+void BST::print_recursive(BST_Node *node)
+{
+
+    if (node->left != nullptr)
+        print_recursive(node->left);
+    std::cout << node->value << " ";
+    if (node->right != nullptr)
+        print_recursive(node->right);
+}
+
+int main()
+{
+
+    std::random_device rd;  // non-deterministic generator
+    std::mt19937 gen(rd()); // random engine seeded with rd()
+    std::uniform_int_distribution<int> dist(1, 10000);
+    BST bst;
+    for (int i = 0; i < 20; i++)
+    {
+        bst.insert(dist(gen));
+    }
+    bst.print();
+    std::cout << std::endl
+              << "In order print" << std::endl;
+    bst.print_in_order();
+    BST_Node *node = bst.search(5154);
+    bst.delete_node(node);
+    bst.print();
+    std::cout << std::endl
+              << "In order print" << std::endl;
+    bst.print_in_order();
+    node = bst.search(62);
+    bst.delete_node(node);
+    bst.print();
+    std::cout << std::endl
+              << "In order print" << std::endl;
+    bst.print_in_order();
+    node = bst.search(9154);
+    bst.delete_node(node);
+    bst.print();
+    std::cout << std::endl
+              << "In order print" << std::endl;
+    bst.print_in_order();
+    return 0;
+}

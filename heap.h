@@ -3,6 +3,7 @@
 
 #include "dynamic_array.h"
 #include <string>
+#include <iostream>
 
 // TODO fix append
 class Heap
