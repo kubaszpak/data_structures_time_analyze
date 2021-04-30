@@ -35,5 +35,5 @@
 
 data_structures.code-workspace
 generator.cpp
-tdata1.txt
 tester.cpp
+check_version.cpp

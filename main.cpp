@@ -6,6 +6,8 @@
 #include <iostream>
 #include <string>
 #include <cstddef>
+#include <cstring>
+#include <fstream>
 
 void main_menu()
 {
@@ -15,7 +17,8 @@ void main_menu()
     std::cout << "2. Doubly Linked List" << std::endl;
     std::cout << "3. Heap" << std::endl;
     std::cout << "4. Binary Search Tree" << std::endl;
-    std::cout << "5. Exit" << std::endl;
+    std::cout << "5. Append data from file" << std::endl;
+    std::cout << "6. Exit" << std::endl;
     std::cout << "-----------------------" << std::endl;
 }
 
@@ -73,6 +76,17 @@ void bst_menu()
     std::cout << "-----------------------" << std::endl;
 }
 
+void file_menu()
+{
+    std::cout << "Which structure do you want the data to be appended to? " << std::endl;
+    std::cout << "-----------------------" << std::endl;
+    std::cout << "1. Dynamic Array" << std::endl;
+    std::cout << "2. Doubly Linked List" << std::endl;
+    std::cout << "3. Heap" << std::endl;
+    std::cout << "4. Binary Search Tree" << std::endl;
+    std::cout << "-----------------------" << std::endl;
+}
+
 void take_input(int &choice, int &output_check)
 {
     char array[100];
@@ -122,10 +136,15 @@ int take_int_input(int x, int range)
 
 int main()
 {
+
     DynamicArray dynamic_array;
     DoublyLinkedList list;
     Heap heap;
     BST bst;
+    std::string file_name;
+    // std::cin >> file_name;
+    // std::ifstream file;
+
     bool inner_loop = true;
     int x;
     Node *test_node = nullptr;
@@ -399,6 +418,92 @@ int main()
                 }
                 break;
             case 5:
+            {
+                int *tab;
+                int val, size;
+                std::cout << "Enter a path to the text file with data, that you want to append, to one of your structures" << std::endl;
+                std::cin >> file_name;
+
+                // ! tutaj
+                std::ifstream file(file_name);
+
+                file_menu();
+                std::cout << std::endl
+                          << std::endl
+                          << "Choose an option from the menu: " << std::endl
+                          << std::endl;
+                choice = take_int_input(choice, 4);
+
+                if (file.is_open())
+                {
+                    file >> size;
+                    tab = new int[size];
+                    if (file.fail())
+                    {
+                        std::cout << "File error - READ SIZE" << std::endl;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < size; i++)
+                        {
+                            file >> val;
+                            if (file.fail())
+                            {
+                                std::cout << "File error - READ DATA" << std::endl;
+                                break;
+                            }
+                            else
+                                tab[i] = val;
+                        }
+                    }
+                    file.close();
+                }
+                else
+                {
+                    std::cout << "File error - OPEN" << std::endl;
+                    wait_for_enter();
+                    break;
+                }
+                switch (choice)
+                {
+                case 1:
+                    for (size_t i = 0; i < size; i++)
+                    {
+                        dynamic_array.append(tab[i]);
+                    }
+
+                    break;
+                case 2:
+
+                    for (size_t i = 0; i < size; i++)
+                    {
+                        list.add_end(tab[i]);
+                    }
+
+                    break;
+                case 3:
+                    for (size_t i = 0; i < size; i++)
+                    {
+                        heap.insert_key(tab[i]);
+                    }
+
+                    break;
+                case 4:
+                    for (size_t i = 0; i < size; i++)
+                    {
+                        bst.insert(tab[i]);
+                    }
+
+                    break;
+                default:
+                    std::cout << "Index out of bounds, try a different one \n";
+                    break;
+                }
+                std::cout << "Success" << std::endl;
+                wait_for_enter();
+                break;
+            }
+            case 6:
                 exit(0);
                 break;
             default:
