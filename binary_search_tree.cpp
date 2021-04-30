@@ -21,8 +21,7 @@ void BST::cleanup_recursively(BST_Node *node)
 
 void BST::insert(const int value)
 {
-    BST_Node *insert_node = new BST_Node();
-    insert_node->value = value;
+    BST_Node *insert_node = new BST_Node(value);
     BST_Node *parent = nullptr;
     BST_Node *current = root;
     while (current != nullptr)
@@ -173,6 +172,14 @@ void BST::print_in_order()
     // heap.print();
     std::cout << std::endl;
 
+    if (root == nullptr)
+    {
+        std::cout << "Binary search tree is empty" << std::endl;
+        return;
+    }
+
+    std::cout << "Binary search tree in order: " << std::endl;
+
     print_recursive(root);
 
     std::cout << std::endl;
@@ -188,38 +195,38 @@ void BST::print_recursive(BST_Node *node)
         print_recursive(node->right);
 }
 
-int main()
-{
+// int main()
+// {
 
-    std::random_device rd;  // non-deterministic generator
-    std::mt19937 gen(rd()); // random engine seeded with rd()
-    std::uniform_int_distribution<int> dist(1, 10000);
-    BST bst;
-    for (int i = 0; i < 20; i++)
-    {
-        bst.insert(dist(gen));
-    }
-    bst.print();
-    std::cout << std::endl
-              << "In order print" << std::endl;
-    bst.print_in_order();
-    BST_Node *node = bst.search(5154);
-    bst.delete_node(node);
-    bst.print();
-    std::cout << std::endl
-              << "In order print" << std::endl;
-    bst.print_in_order();
-    node = bst.search(62);
-    bst.delete_node(node);
-    bst.print();
-    std::cout << std::endl
-              << "In order print" << std::endl;
-    bst.print_in_order();
-    node = bst.search(9154);
-    bst.delete_node(node);
-    bst.print();
-    std::cout << std::endl
-              << "In order print" << std::endl;
-    bst.print_in_order();
-    return 0;
-}
+//     std::random_device rd;  // non-deterministic generator
+//     std::mt19937 gen(rd()); // random engine seeded with rd()
+//     std::uniform_int_distribution<int> dist(1, 10000);
+//     BST bst;
+//     for (int i = 0; i < 20; i++)
+//     {
+//         bst.insert(dist(gen));
+//     }
+//     bst.print();
+//     std::cout << std::endl
+//               << "In order print" << std::endl;
+//     bst.print_in_order();
+//     BST_Node *node = bst.search(5154);
+//     bst.delete_node(node);
+//     bst.print();
+//     std::cout << std::endl
+//               << "In order print" << std::endl;
+//     bst.print_in_order();
+//     node = bst.search(62);
+//     bst.delete_node(node);
+//     bst.print();
+//     std::cout << std::endl
+//               << "In order print" << std::endl;
+//     bst.print_in_order();
+//     node = bst.search(9154);
+//     bst.delete_node(node);
+//     bst.print();
+//     std::cout << std::endl
+//               << "In order print" << std::endl;
+//     bst.print_in_order();
+//     return 0;
+// }

@@ -67,7 +67,9 @@ void bst_menu()
     std::cout << "2. Search for a node with a specified key" << std::endl;
     std::cout << "3. Find a successor of the chosen node" << std::endl;
     std::cout << "4. Find the minimum key starting from the chosen node" << std::endl;
-    std::cout << "5. Exit to main menu" << std::endl;
+    std::cout << "5. Print binary search tree in order" << std::endl;
+    std::cout << "6. Delete chosen node" << std::endl;
+    std::cout << "7. Exit to main menu" << std::endl;
     std::cout << "-----------------------" << std::endl;
 }
 
@@ -366,6 +368,22 @@ int main()
                             wait_for_enter();
                             break;
                         case 5:
+                            bst.print_in_order();
+                            wait_for_enter();
+                            break;
+                        case 6:
+                            if (bst_node == nullptr)
+                            {
+                                std::cout << "Select a node first, use second operation from the menu to do that" << std::endl;
+                            }
+                            else
+                            {
+                                bst.delete_node(bst_node);
+                                bst_node = nullptr;
+                            }
+                            wait_for_enter();
+                            break;
+                        case 7:
                             inner_loop = false;
                             break;
                         default:

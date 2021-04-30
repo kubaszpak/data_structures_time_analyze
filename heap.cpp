@@ -110,27 +110,27 @@ void Heap::delete_max()
     }
 }
 
-int main()
-{
-    Heap heap;
+// int main()
+// {
+//     Heap heap;
 
-    for (int i = 0; i < 10; i++)
-    {
-        heap.insert_key(i);
-    }
-    // std::cout << heap.get_size() << std::endl;
-    heap.display();
-    heap.build_heap();
-    heap.display();
+//     for (int i = 0; i < 10; i++)
+//     {
+//         heap.insert_key(i);
+//     }
+//     // std::cout << heap.get_size() << std::endl;
+//     heap.display();
+//     heap.build_heap();
+//     heap.display();
 
-    for (int i = 0; i < 10; i++)
-    {
-        heap.delete_max();
-        heap.display();
-    }
+//     for (int i = 0; i < 10; i++)
+//     {
+//         heap.delete_max();
+//         heap.display();
+//     }
 
-    // heap.array[1] = 1;
-    // heap.build_heap();
-    // heap.display();
-    return 0;
-}
+//     // heap.array[1] = 1;
+//     // heap.build_heap();
+//     // heap.display();
+//     return 0;
+// }

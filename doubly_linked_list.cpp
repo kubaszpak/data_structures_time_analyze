@@ -62,10 +62,8 @@ void DoublyLinkedList::add_end(const int value)
 }
 
 // This function takes node and puts a new one right after this one in the list
-// TODO Make this function take a value instead of pointer to Node and use search to get the Node
 void DoublyLinkedList::add_after(int node_value, const int value)
 {
-    // TODO change assert to correct if statement and return
     // assert(node != nullptr);
 
     Node *node = get_from_start(node_value);
@@ -95,10 +93,8 @@ void DoublyLinkedList::add_after(int node_value, const int value)
 }
 
 // This function takes node and puts a new one right before this one in the list
-// TODO Make this function take a value instead of pointer to Node and use search to get the Node
 void DoublyLinkedList::add_before(int node_value, const int value)
 {
-    // TODO change assert to correct if statement and return
     // assert(node != nullptr);
     Node *node = get_from_start(node_value);
     if (node != nullptr)
@@ -166,7 +162,6 @@ void DoublyLinkedList::print_from_end() const
 }
 
 // This function deletes node passed as pointer
-// TODO it the future it should probably take value and search for it to get pointer to the Node
 void DoublyLinkedList::delete_node(int node_value)
 {
 

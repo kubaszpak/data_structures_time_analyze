@@ -44,7 +44,7 @@ const size_t &DynamicArray::get_size() const
 // }
 
 // Print every element with value value
-// TODO Make this function actually return index of first found element
+// ? Make this function actually return index of first found element
 void DynamicArray::search(const int value) const
 {
     bool found = false;
@@ -182,38 +182,38 @@ const int &DynamicArray::operator[](int index) const
     return array[index];
 }
 
-int main()
-{
-    DynamicArray array;
-    for (int i = 0; i < 10; i++)
-    {
-        array.display();
-        array.append(i);
-    }
-    array.add(5, 20);
-    array.add(-2, 10);
-    array.add(100, 40);
-    array.add(15, -25);
-    array.display();
-    array.search(20);
-    array.search(80);
-    array.add_at_start(20);
-    array.append(21);
-    for (int i = 0; i < 14; i++)
-    {
-        array.display();
-        array.delete_at(0);
-    }
-    array.display();
-    array.display();
-    array.display();
-    array.display();
-    array.append(5);
-    array.append(5);
-    array.append(5);
-    array.append(5);
-    array.display();
-    array.display();
-    array.display();
-    array.display();
-}
+// int main()
+// {
+//     DynamicArray array;
+//     for (int i = 0; i < 10; i++)
+//     {
+//         array.display();
+//         array.append(i);
+//     }
+//     array.add(5, 20);
+//     array.add(-2, 10);
+//     array.add(100, 40);
+//     array.add(15, -25);
+//     array.display();
+//     array.search(20);
+//     array.search(80);
+//     array.add_at_start(20);
+//     array.append(21);
+//     for (int i = 0; i < 14; i++)
+//     {
+//         array.display();
+//         array.delete_at(0);
+//     }
+//     array.display();
+//     array.display();
+//     array.display();
+//     array.display();
+//     array.append(5);
+//     array.append(5);
+//     array.append(5);
+//     array.append(5);
+//     array.display();
+//     array.display();
+//     array.display();
+//     array.display();
+// }

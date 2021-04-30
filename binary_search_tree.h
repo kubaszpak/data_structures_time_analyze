@@ -11,15 +11,6 @@ struct BST_Node
     BST_Node *parent = nullptr;
     int value;
 
-    BST_Node()
-    {
-
-        this->left = nullptr;
-        this->right = nullptr;
-        this->parent = nullptr;
-        this->value = 0;
-    }
-
     BST_Node(int value)
     {
 
