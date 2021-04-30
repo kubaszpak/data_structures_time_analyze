@@ -72,6 +72,7 @@ void DynamicArray::delete_at(const int index)
     }
     if (size == 1)
     {
+        this->size -= 1;
         delete[] array;
         array = nullptr;
         return;
@@ -112,12 +113,19 @@ void DynamicArray::add_at_start(const int value)
 void DynamicArray::display() const
 {
     bool first = true;
-    for (size_t i = 0; i < size; i++)
+    if (array == nullptr)
     {
-        if (!first)
-            std::cout << " ";
-        std::cout << array[i];
-        first = false;
+        std::cout << "Array is empty";
+    }
+    else
+    {
+        for (size_t i = 0; i < size; i++)
+        {
+            if (!first)
+                std::cout << " ";
+            std::cout << array[i];
+            first = false;
+        }
     }
     std::cout << std::endl
               << "Size = " << size << std::endl;
@@ -191,11 +199,21 @@ int main()
     array.search(80);
     array.add_at_start(20);
     array.append(21);
-    array.delete_at(10);
-    array.delete_at(10);
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 14; i++)
     {
-        array.delete_at(0);
         array.display();
+        array.delete_at(0);
     }
+    array.display();
+    array.display();
+    array.display();
+    array.display();
+    array.append(5);
+    array.append(5);
+    array.append(5);
+    array.append(5);
+    array.display();
+    array.display();
+    array.display();
+    array.display();
 }
