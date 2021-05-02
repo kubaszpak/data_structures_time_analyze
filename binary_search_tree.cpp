@@ -167,6 +167,18 @@ void BST::delete_node(BST_Node *node)
         node->value = parent_node->value;
 }
 
+void BST::delete_node_with_value(const int value)
+{
+    BST_Node *node = this->search(value);
+    if (node == nullptr)
+    {
+        return;
+    }
+    this->delete_node(node);
+
+    return;
+}
+
 void BST::print_in_order()
 {
     // heap.print();

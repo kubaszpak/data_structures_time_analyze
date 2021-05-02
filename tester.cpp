@@ -17,7 +17,7 @@ int main()
     int val, size;
 
     ifstream file("test_data/test_data_500k.txt");
-    int random_displacement = 500;
+    int random_displacement = 3000;
 
     if (file.is_open())
     {
@@ -57,17 +57,17 @@ int main()
     clock_t start, elapsed;
 
     cout << size << endl;
+
     for (int i = 0; i < size; i++)
     {
         bst.insert(tab[i]);
     }
-    // start pomiaru czasu
     start = clock();
-    for (size_t i = 0; i < 10000; i++)
+    for (size_t i = 0; i < size; i += (size / 10000))
     {
-
-        bst.insert(tab[i + random_displacement]);
+        bst.search(tab[i]);
     }
+
     elapsed = clock() - start;
     cout << "Time [ms] = " << (1000 * elapsed) / CLOCKS_PER_SEC << endl;
     delete[] tab;

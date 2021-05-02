@@ -28,6 +28,7 @@ public:
     ~BST();
     void print();
     void insert(const int value);
+    void delete_node_with_value(const int value);
     void delete_node(BST_Node *node);
     BST_Node *search(const int key);
     BST_Node *search(const int key, BST_Node *node);

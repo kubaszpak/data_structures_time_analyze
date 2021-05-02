@@ -54,6 +54,7 @@ void DynamicArray::search(const int value) const
         {
             std::cout << "Value " << value << " is located at index " << i << std::endl;
             found = true;
+            return;
         }
     }
     if (!found)
