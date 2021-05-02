@@ -33,7 +33,5 @@
 
 .vscode/
 
-data_structures.code-workspace
 generator.cpp
-tester.cpp
 check_version.cpp

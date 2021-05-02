@@ -128,10 +128,10 @@ void BST::print()
     std::cout << std::endl;
 }
 
-void BST::delete_node(BST_Node *node /* delete_node */)
+void BST::delete_node(BST_Node *node)
 {
-    BST_Node *parent_node;  // y
-    BST_Node *current_node; // x
+    BST_Node *parent_node;
+    BST_Node *current_node;
     if (node->left == nullptr || node->right == nullptr)
     {
         parent_node = node;
