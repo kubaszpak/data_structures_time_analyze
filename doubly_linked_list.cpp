@@ -87,7 +87,7 @@ void DoublyLinkedList::add_after(int node_value, const int value)
     }
     else
     {
-        std::cout << "Lits does not contain element with value " << node_value << std::endl;
+        std::cout << "List does not contain element with value " << node_value << std::endl;
         std::cout << "Specify different node to be the place of insertion" << std::endl;
     }
 }
@@ -116,7 +116,7 @@ void DoublyLinkedList::add_before(int node_value, const int value)
     }
     else
     {
-        std::cout << "Lits does not contain element with value " << node_value << std::endl;
+        std::cout << "List does not contain element with value " << node_value << std::endl;
         std::cout << "Specify different node to be the place of insertion" << std::endl;
     }
 }
@@ -250,12 +250,17 @@ Node *DoublyLinkedList::get_from_start(const int value) const
         std::cout << "List is empty" << std::endl;
         return nullptr;
     }
+    int position_counter = 0;
     Node *current = start_node;
     while (current != nullptr)
     {
         if (current->value == value)
+        {
+            std::cout << "Node found at position " << position_counter << " counting from the start" << std::endl;
             return current;
+        }
         current = current->next;
+        position_counter++;
     }
     return nullptr;
 }
@@ -268,14 +273,114 @@ Node *DoublyLinkedList::get_from_end(const int value) const
         std::cout << "List is empty" << std::endl;
         return nullptr;
     }
+    int position_counter = 0;
     Node *current = end_node;
     while (current != nullptr)
     {
         if (current->value == value)
+        {
+            std::cout << "Node found at position " << position_counter << " counting from the end" << std::endl;
             return current;
+        }
         current = current->previous;
+        position_counter++;
     }
     return nullptr;
+}
+
+void DoublyLinkedList::add_at_index(int index, int value)
+{
+    if (index < 0)
+    {
+        std::cout << "Index < 0, returning" << std::endl;
+        return;
+    }
+    if (index == 0)
+    {
+        this->add_start(value);
+        return;
+    }
+    int index_counter = 0;
+    Node *current = start_node;
+
+    while (current != nullptr && index_counter < index)
+    {
+        current = current->next;
+        index_counter++;
+    }
+    if (index_counter == index && current == nullptr)
+    {
+        std::cout << "test" << std::endl;
+        this->add_end(value);
+        return;
+    }
+    if (index_counter == index && current != nullptr)
+    {
+        std::cout << "test1" << std::endl;
+        Node *temp = new Node();
+        temp->previous = current->previous;
+        temp->value = value;
+        temp->next = current;
+        current->previous = temp;
+        if (temp->previous != nullptr)
+        {
+            temp->previous->next = temp;
+        }
+        else
+        {
+            start_node = temp;
+        }
+        return;
+    }
+    if (index_counter < index)
+    {
+        std::cout << "List is smaller than the index you have passed" << std::endl;
+        return;
+    }
+}
+
+void DoublyLinkedList::delete_at(int index)
+{
+    if (index < 0)
+    {
+        std::cout << "Index < 0, returning" << std::endl;
+        return;
+    }
+    if (index == 0)
+    {
+        this->delete_start();
+        return;
+    }
+    int index_counter = 0;
+    Node *current = start_node;
+
+    while (current != nullptr && index_counter < index)
+    {
+        current = current->next;
+        index_counter++;
+    }
+    if (index_counter == index && current != nullptr)
+    {
+        if (current == end_node)
+        {
+            this->delete_end();
+        }
+        else
+        {
+
+            Node *temp = current->previous;
+            temp->next = current->next;
+            delete current;
+            temp->next->previous = temp;
+        }
+
+        return;
+    }
+    if (index_counter < index || current == nullptr)
+    {
+        std::cout << "List is smaller than the index you have passed" << std::endl;
+        return;
+    }
 }
 
 // int main()

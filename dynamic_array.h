@@ -20,6 +20,8 @@ public:
     void display() const;
     int &operator[](int index);
     const int &operator[](int index) const;
+    void delete_start();
+    void delete_end();
 
 private:
     // static constexpr unsigned int INITIAL_SIZE = 8;

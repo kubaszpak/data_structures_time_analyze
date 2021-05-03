@@ -59,7 +59,7 @@ void DynamicArray::search(const int value) const
     }
     if (!found)
     {
-        std::cout << "Array does not contain " << value << std::endl;
+        std::cout << "Structure does not contain " << value << std::endl;
     }
 }
 
@@ -181,6 +181,16 @@ const int &DynamicArray::operator[](int index) const
         throw std::invalid_argument("Array index out of bounds");
     }
     return array[index];
+}
+
+void DynamicArray::delete_start()
+{
+    this->delete_at(0);
+}
+
+void DynamicArray::delete_end()
+{
+    this->delete_at(size - 1);
 }
 
 // int main()

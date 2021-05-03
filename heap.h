@@ -16,6 +16,7 @@ public:
     void insert_key(const int value);
     void delete_max();
     void append_without_rebalancing(const int value);
+    void search(const int value);
 
 private:
     static int left(int index);

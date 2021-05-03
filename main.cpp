@@ -26,12 +26,14 @@ void array_menu()
 {
     std::cout << "Choose an operation on the array" << std::endl;
     std::cout << "-----------------------" << std::endl;
-    std::cout << "1. Add a random key at the start of the array" << std::endl;
-    std::cout << "2. Append a random key to the end of the array" << std::endl;
-    std::cout << "3. Add a random key at specified index and shift all further keys to the right" << std::endl;
+    std::cout << "1. Add a key at the start of the array" << std::endl;
+    std::cout << "2. Append a key to the end of the array" << std::endl;
+    std::cout << "3. Add a key at specified index and shift all further keys to the right" << std::endl;
     std::cout << "4. Delete a key at the specified index" << std::endl;
-    std::cout << "5. Search for specified key" << std::endl;
-    std::cout << "6. Exit to main menu" << std::endl;
+    std::cout << "5. Delete start" << std::endl;
+    std::cout << "6. Delete end" << std::endl;
+    std::cout << "7. Search for specified key" << std::endl;
+    std::cout << "8. Exit to main menu" << std::endl;
     std::cout << "-----------------------" << std::endl;
 }
 
@@ -39,14 +41,18 @@ void doubly_linked_list_menu()
 {
     std::cout << "Choose an operation on the list" << std::endl;
     std::cout << "-----------------------" << std::endl;
-    std::cout << "1. Add a random key at the start of the list" << std::endl;
-    std::cout << "2. Append a random key to the end of the list" << std::endl;
-    std::cout << "3. Add a random key before the specified node" << std::endl;
-    std::cout << "4. Add a random key after the specified node" << std::endl;
-    std::cout << "5. Delete the start node" << std::endl;
-    std::cout << "6. Delete the end node" << std::endl;
-    std::cout << "7. Delete a node with a specified value" << std::endl;
-    std::cout << "8. Exit to main menu" << std::endl;
+    std::cout << "1. Add a key at the start of the list" << std::endl;
+    std::cout << "2. Append a key to the end of the list" << std::endl;
+    std::cout << "3. Add a key before the specified node" << std::endl;
+    std::cout << "4. Add a key after the specified node" << std::endl;
+    std::cout << "5. Add a node at index" << std::endl;
+    std::cout << "6. Delete the start node" << std::endl;
+    std::cout << "7. Delete the end node" << std::endl;
+    std::cout << "8. Delete a node at index" << std::endl;
+    std::cout << "9. Delete a node with a specified value" << std::endl;
+    std::cout << "10. Search for a specified value from the start" << std::endl;
+    std::cout << "11. Search for a specified value from the end" << std::endl;
+    std::cout << "12. Exit to main menu" << std::endl;
     std::cout << "-----------------------" << std::endl;
 }
 
@@ -54,11 +60,12 @@ void heap_menu()
 {
     std::cout << "Choose an operation on the heap" << std::endl;
     std::cout << "-----------------------" << std::endl;
-    std::cout << "1. Insert a random key and rebalance the heap on this element" << std::endl;
+    std::cout << "1. Insert a key and rebalance the heap on this element" << std::endl;
     std::cout << "2. Delete a key from the heap and restore the heap property on this element" << std::endl;
     std::cout << "3. Append a new key without restoring the heap property" << std::endl;
     std::cout << "4. Build the heap restoring heap property on every node" << std::endl;
-    std::cout << "5. Exit to main menu" << std::endl;
+    std::cout << "5. Search for an element with a specified value" << std::endl;
+    std::cout << "6. Exit to main menu" << std::endl;
     std::cout << "-----------------------" << std::endl;
 }
 
@@ -66,13 +73,14 @@ void bst_menu()
 {
     std::cout << "Choose an operation on the binary search tree" << std::endl;
     std::cout << "-----------------------" << std::endl;
-    std::cout << "1. Insert a random key and restore the Bst properties" << std::endl;
+    std::cout << "1. Insert a key and restore the Bst properties" << std::endl;
     std::cout << "2. Search for a node with a specified key" << std::endl;
     std::cout << "3. Find a successor of the chosen node" << std::endl;
     std::cout << "4. Find the minimum key starting from the chosen node" << std::endl;
     std::cout << "5. Print binary search tree in order" << std::endl;
     std::cout << "6. Delete chosen node" << std::endl;
-    std::cout << "7. Exit to main menu" << std::endl;
+    std::cout << "7. Delete a node with a specified value" << std::endl;
+    std::cout << "8. Exit to main menu" << std::endl;
     std::cout << "-----------------------" << std::endl;
 }
 
@@ -149,10 +157,11 @@ int main()
     int x;
     Node *test_node = nullptr;
     BST_Node *bst_node = nullptr;
+    int insert_value = 0;
 
-    std::random_device dev;
-    std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist(1, 10000); // distribution in range [1, 6]
+    // std::random_device dev;
+    // std::mt19937 rng(dev());
+    // std::uniform_int_distribution<std::mt19937::result_type> dist(1, 10000); // distribution in range [1, 6]
 
     while (true)
     {
@@ -181,27 +190,48 @@ int main()
                         switch (choice)
                         {
                         case 1:
-                            dynamic_array.add_at_start(dist(rng));
+                            std::cout << "Specify a value, that u want to add at start" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            dynamic_array.add_at_start(insert_value);
                             break;
                         case 2:
-                            dynamic_array.append(dist(rng));
+                            std::cout << "Specify a value, that u want to append" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            dynamic_array.append(insert_value);
                             break;
                         case 3:
                             x = take_int_input(x, dynamic_array.get_size());
-                            dynamic_array.add(x, dist(rng));
+                            std::cout << "Specify a value, that u want to add" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            dynamic_array.add(x, insert_value);
                             wait_for_enter();
                             break;
                         case 4:
-                            x = take_int_input(x, dynamic_array.get_size() - 1);
-                            dynamic_array.delete_at(x);
+                            if (dynamic_array.get_size() == 0)
+                            {
+                                std::cout << "Array is empty, nothing to delete" << std::endl;
+                            }
+                            else
+                            {
+                                x = take_int_input(x, dynamic_array.get_size() - 1);
+                                dynamic_array.delete_at(x);
+                            }
                             wait_for_enter();
                             break;
                         case 5:
+                            dynamic_array.delete_start();
+                            wait_for_enter();
+                            break;
+                        case 6:
+                            dynamic_array.delete_end();
+                            wait_for_enter();
+                            break;
+                        case 7:
                             x = take_int_input(x);
                             dynamic_array.search(x);
                             wait_for_enter();
                             break;
-                        case 6:
+                        case 8:
                             inner_loop = false;
                             break;
                         default:
@@ -236,38 +266,73 @@ int main()
                         switch (choice)
                         {
                         case 1:
-                            list.add_start(dist(rng));
+                            std::cout << "Specify a value, that u want to add at start" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            list.add_start(insert_value);
                             break;
                         case 2:
-                            list.add_end(dist(rng));
+                            std::cout << "Specify a value, that u want to add at end" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            list.add_end(insert_value);
                             break;
                         case 3:
                             std::cout << "Specify a value from list above, that u want to insert a random number before" << std::endl;
                             x = take_int_input(x);
-                            list.add_before(x, dist(rng));
+                            std::cout << "Specify a value, that u want to add" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            list.add_before(x, insert_value);
                             wait_for_enter();
                             break;
                         case 4:
                             std::cout << "Specify a value from list above, that u want to insert a random number after" << std::endl;
                             x = take_int_input(x);
-                            list.add_after(x, dist(rng));
+                            std::cout << "Specify a value, that u want to add" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            list.add_after(x, insert_value);
                             wait_for_enter();
                             break;
                         case 5:
-                            list.delete_start();
+                            std::cout << "Specify an index that u want the new value to be at" << std::endl;
+                            x = take_int_input(x);
+                            std::cout << "Specify a value, that u want to add" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            list.add_at_index(x, insert_value);
                             wait_for_enter();
                             break;
                         case 6:
-                            list.delete_end();
+                            list.delete_start();
                             wait_for_enter();
                             break;
                         case 7:
+                            list.delete_end();
+                            wait_for_enter();
+                            break;
+                        case 8:
+                            std::cout << "Specify an index with a node that u want to delete" << std::endl;
+                            x = take_int_input(x);
+                            list.delete_at(x);
+                            wait_for_enter();
+                            break;
+                        case 9:
                             std::cout << "Specify a value from list above, that u want to insert a random number after" << std::endl;
                             x = take_int_input(x);
                             list.delete_node(x);
                             wait_for_enter();
                             break;
-                        case 8:
+                        case 10:
+                            std::cout << "Specify a value from list above, that u want to search for" << std::endl;
+                            x = take_int_input(x);
+                            list.get_from_start(x);
+                            wait_for_enter();
+                            break;
+                        case 11:
+                            std::cout << "Specify a value from list above, that u want to search for" << std::endl;
+                            x = take_int_input(x);
+                            list.get_from_end(x);
+                            wait_for_enter();
+                            break;
+
+                        case 12:
                             inner_loop = false;
                             break;
                         default:
@@ -301,18 +366,28 @@ int main()
                         switch (choice)
                         {
                         case 1:
-                            heap.insert_key(dist(rng));
+                            std::cout << "Specify a value, that u want to add" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            heap.insert_key(insert_value);
                             break;
                         case 2:
                             heap.delete_max();
                             break;
                         case 3:
-                            heap.append_without_rebalancing(dist(rng));
+                            std::cout << "Specify a value, that u want to add" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            heap.append_without_rebalancing(insert_value);
                             break;
                         case 4:
                             heap.build_heap();
                             break;
                         case 5:
+                            std::cout << "Specify a value, that u want to search for" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            heap.search(insert_value);
+                            wait_for_enter();
+                            break;
+                        case 6:
                             inner_loop = false;
                             break;
                         default:
@@ -356,7 +431,9 @@ int main()
                         switch (choice)
                         {
                         case 1:
-                            bst.insert(dist(rng));
+                            std::cout << "Specify a value, that u want to add" << std::endl;
+                            insert_value = take_int_input(insert_value);
+                            bst.insert(insert_value);
                             break;
                         case 2:
                             std::cout << "Specify a value from bst above, that u want to select to do further operations on" << std::endl;
@@ -403,6 +480,11 @@ int main()
                             wait_for_enter();
                             break;
                         case 7:
+                            insert_value = take_int_input(insert_value);
+                            bst.delete_node_with_value(insert_value);
+                            wait_for_enter();
+                            break;
+                        case 8:
                             inner_loop = false;
                             break;
                         default:

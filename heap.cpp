@@ -18,6 +18,11 @@ const size_t &Heap::get_size() const
     return array.get_size();
 }
 
+void Heap::search(const int value)
+{
+    array.search(value);
+}
+
 // restore heap property
 void Heap::max_heapify(int index)
 {
@@ -56,14 +61,14 @@ void Heap::printBT(const std::string &prefix, const int index, bool isLeft)
     {
         std::cout << prefix;
 
-        std::cout << (isLeft ? "├──" : "└──");
+        std::cout << (isLeft ? "\xC3\xC4\xC4" : "\xC0\xC4\xC4");
 
         // print the value of the node
         std::cout << array[index] << std::endl;
 
         // enter the next tree level - left and right branch
-        this->printBT(prefix + (isLeft ? "│   " : "    "), left(index), true);
-        this->printBT(prefix + (isLeft ? "│   " : "    "), right(index), false);
+        this->printBT(prefix + (isLeft ? "\xB3   " : "    "), left(index), true);
+        this->printBT(prefix + (isLeft ? "\xB3   " : "    "), right(index), false);
     }
 }
 
@@ -123,11 +128,7 @@ void Heap::delete_max()
 //     heap.build_heap();
 //     heap.display();
 
-//     for (int i = 0; i < 10; i++)
-//     {
-//         heap.delete_max();
-//         heap.display();
-//     }
+//     heap.search(3);
 
 //     // heap.array[1] = 1;
 //     // heap.build_heap();

@@ -24,6 +24,8 @@ public:
     void delete_node(int node_value);
     void delete_start();
     void delete_end();
+    void add_at_index(int index, int value);
+    void delete_at(int index);
     Node *get_from_start(const int value) const;
     Node *get_from_end(const int value) const;
 
