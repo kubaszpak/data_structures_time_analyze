@@ -16,11 +16,15 @@ Now you should be able to start the application by simple running the executable
 
 Main menu:
 <br>
+<br>
 ![main](./git_images/menu.png)
+<br>
 <br>
 Example BST usage:
 <br>
+<br>
 ![bst](./git_images/bst_preview.png)
+<br>
 <br>
 ## Documentation
 You can find the documentation in Polish [here](./Documentation.pdf), where I deeply go into the details of time complexities of certain operations on those data structures.<br>You can also find a lot of charts that present the time complexities of addition, substraction and search on the fisnished product.
