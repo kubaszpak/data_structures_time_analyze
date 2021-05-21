@@ -28,3 +28,9 @@ Example BST usage:
 <br>
 ## Documentation
 You can find the documentation in Polish [here](./Documentation.pdf), where I deeply go into the details of time complexities of certain operations on those data structures.<br>You can also find a lot of charts that present the time complexities of addition, substraction and search on the fisnished product.
+<br>
+<br>
+Example of a char (Once again you can find more in [here](./Documentation.pdf)):
+<br>
+<br>
+![Addition](./charts/AllAdd.png)
